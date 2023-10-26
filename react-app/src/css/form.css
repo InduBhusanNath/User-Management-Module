@@ -1,0 +1,96 @@
+form{
+    width:100%;
+    padding:10px;
+}
+
+label{    
+    padding-top:5px;
+    font-family:calibri;
+    font-size:14px;
+    color:darkslategray;  
+    font-weight:bold; 
+}
+
+input[type=text]{
+    width:100%;
+    height:35px;
+    border:none;
+    display:block;
+    
+
+}
+input[type=email]{
+    width:100%;
+    height:35px;
+    border:none;
+    display:block;   
+
+}
+input[type=password]{
+    width:100%;
+    height:35px;
+    border:none;
+    display:block;   
+
+}
+input[type=file]{
+    width:100%;
+    height:35px;
+    border:none;
+    display:block;   
+
+}
+input[type=date]{
+    width:100%;
+    height:35px;
+    border:none;
+    display:block;   
+
+}
+input[type=radio]{    
+     border:none;   
+
+}
+textarea{
+    width:100%;
+    height:80px;
+    resize:none;
+    border:none;
+    
+}
+select{
+    width:100%;
+    height:35px;
+    border:none;
+}
+.submit{
+    font-weight: bold;
+    font-family: calibri;
+    display:block;
+    width:100%;
+    background-color:palegoldenrod;
+    color:black;
+    border:none;
+    border-radius:10px 10px 10px 10px;
+    cursor:pointer;
+    height:35px;
+    padding:0px;
+    z-index:5;
+    text-align:center;
+    font-size:16px;
+}
+.res{
+    color:red;
+}
+.getid{
+    display:block;
+}
+.getid1{
+    display: block;
+}
+.getid2{
+    display: block;
+}
+a{
+     text-decoration:none;
+}

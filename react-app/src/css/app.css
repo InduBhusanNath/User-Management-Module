@@ -1,0 +1,209 @@
+.background-whitesmoke{
+      background-color: whitesmoke;
+}
+.background-ghostwhite{
+      background-color: ghostwhite;
+}
+.background-lightyellow{
+      background-color: lightyellow;
+}
+.background-azure{
+      background-color: azure;
+}
+.background-mintcream{
+      background-color: mintcream;
+}
+.background-lightgoldenrodyellow{
+      background-color: lightgoldenrodyellow;
+}
+.background-palegoldenrod{
+      background-color: palegoldenrod;
+}
+.background-aliceblue{
+      background-color: aliceblue;
+}
+.background-lemonchiffon{
+      background-color:lemonchiffon;
+}
+.background-beige{
+      background-color:beige;
+}
+.background-midnightblue{
+      background-color:midnightblue;
+}
+.background-powderblue{
+      background-color:powderblue;
+}
+.background-cornsilk{
+      background-color:cornsilk;
+}
+.background-skyblue{
+       background-color: skyblue;
+}
+.background-lavender{
+      background-color:lavender;
+}
+.background-khaki{
+      background-color:khaki;
+}
+
+.color-gold{
+       color:gold;
+}
+.color-darkorange{
+       color:darkorange;
+}
+.color-black{
+       color:black;
+}
+
+.padding0{
+     padding:0px;
+}
+
+.padding5{
+      padding:5px;
+}
+.padding10{
+     padding:10px;
+}
+.padding15{
+      padding:15px;
+ }
+ .padding20{
+      padding:20px;
+ }
+ .padding25{
+      padding:25px;
+ }
+.mobile_menu{
+     position:absolute;
+     z-index:10;
+     display:none;
+     top:0px;
+     left:0px;
+     width:100%;
+}
+.popup{
+      position:absolute;
+      /*display:none;*/
+      border:none;
+      border-radius:12px 12px 12px 12px;
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      background-color:beige;
+      left:25%;
+      top:5px;
+      width:40%;
+      padding:15px;
+      z-index:15;
+}
+  
+.back_btn{
+      background-color:lavender;
+      color:darkred;
+      font-size:16px;
+      border-radius:8px 8px 8px 8px;
+      padding:5px;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      text-decoration:none;    
+      
+}
+.button{
+       border:none;
+       border-radius:8px 8px 8px 8px;
+       background-image: linear-gradient(to right,khaki,lightyellow);
+       color:black;
+       font-family:'Arial Narrow Bold', sans-serif;
+       font-weight:bold;
+       padding:5px;
+       box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+       cursor:pointer;
+      
+}
+.hide_btn{
+      background-color:lavender;
+      color:black;
+      font-size:14px;
+      border:1px solid red;
+      padding:1px;    
+      cursor:pointer;
+}
+.collapse_button{
+       background-color:transparent;
+       width:100%;
+       text-align: left;
+       border:none;      
+           
+}
+.left_popup{
+      position:absolute;
+      display:none;
+      border:none;
+      border-radius:12px 12px 12px 12px;
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      background-color:lavender;
+      left:65%;
+      top:1px;
+      width:35%;
+      padding:15px;
+      z-index:15;
+}
+.sidepanel{
+      border-radius:12px 12px 12px 12px;
+      background-color: whitesmoke;
+      padding:10px;
+      width:100%;
+}
+
+.action{
+       text-decoration:none;
+       cursor:pointer;
+       color:black;
+}
+.shown{
+      display: block;
+}
+.hidden{
+       display:none;
+}
+.content_object{
+      width:100%;
+      height:100%;
+}
+.whatsapp{
+       position:fixed;      
+       
+}
+.collapse_text2{
+       background-color: lightyellow;
+       padding:10px;
+}
+
+.collapsible{
+       background-color: transparent;
+       cursor: pointer;
+       padding:10px;
+       width:100%;
+       border:none;
+       text-align: left;
+}
+.active,.collapsible:hover{
+       background-color: transparent;
+}
+.collapsible:after{
+       content:'\002B';
+       color:black;
+       font-weight: bold;
+       float:right;
+
+}
+.active:after{
+       content: "\2212";
+}
+.collapsible_content{
+       padding: 15px;
+       border:1px solid black;
+       transition: max-height 0.2s ease-out;
+       background-color: transparent;
+
+}
