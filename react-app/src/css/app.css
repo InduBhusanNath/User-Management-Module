@@ -97,6 +97,26 @@
       padding:15px;
       z-index:15;
 }
+.dropdown{
+      position:absolute;
+      /*display:none;*/
+      border:none;
+      border-radius:12px 12px 12px 12px;
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      background-color:beige;
+      left:0%;
+      top:5px;
+      width:auto;
+      padding:15px;
+      z-index:15;
+}
+
+.overflow_visible{
+      overflow: visible;
+}
+.height15{
+      height: 15px;
+}
   
 .back_btn{
       background-color:lavender;

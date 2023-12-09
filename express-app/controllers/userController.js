@@ -187,6 +187,25 @@ function changePassword(req,res){
         
 }
 
+//Change Password By User
+function changePasswordByUser(req,res){
+        var n_chgpwdusername=req.body.n_chgpwdusername;
+        var n_updatePassword=req.body.n_updatePassword;
+        const salt = bcrypt.genSaltSync(saltRounds);
+        const changed_pwd_by_user = bcrypt.hashSync(n_updatePassword,salt);
+
+        const query={username:n_chgpwdusername};
+        userModel.findOneAndUpdate(query,{$set:{password:changed_pwd_by_user}})
+        .then(data=>{
+             res.send("Password Successfully Changed.....");
+        })
+        .catch(error=>{
+             res.send(error);
+        });
+
+        
+}
+
 
 module.exports={
       createUser:createUser,
@@ -197,7 +216,8 @@ module.exports={
       deleteUser:deleteUser,
       priviledgeUserData:priviledgeUserData,
       changeUserPriviledge:changeUserPriviledge,
-      changePassword:changePassword
+      changePassword:changePassword,
+      changePasswordByUser:changePasswordByUser
 }
       
 
