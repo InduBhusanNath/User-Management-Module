@@ -21,40 +21,8 @@ function TechnicalSeo(){
            </Helmet>
     </>);
 }
-function UserLogin(){
-    const [sessionUsername,setSessionUsername]=useState('');
-    const [sessionName,setSessionName]=useState('');
-    const [sessionDesignation,setSessionDesignation]=useState('');
-    const [sessionAdminStatus,setSessionAdminStatus]=useState('');
-    const [sessionAddress,setSessionAddress]=useState('');
-    const [profileDropdownVisibility,setProfileDropdownVisibility]=useState('shown');
-    const [chgPassword,setChgPassword]=useState('');
-    
 
-     let urlParams=new URLSearchParams(window.location.search);
-     var sesId=urlParams.get('session');
-     axios.get("admin_session?id="+sesId)
-     .then(response=>{        
-         var sesData=response.data;
-         sesData.map((ses)=>{
-            setSessionUsername(ses.username);
-            setSessionName(ses.name);
-            setSessionDesignation(ses.designation);
-            setSessionAdminStatus(ses.adminStatus);
-            setSessionAddress(ses.address);            
-         }
-            
-         );
-     })
-     .catch(error=>{
-        alert(error);
-     });
-       return(<>
-       hhhhhhhhh
-       </>);
 
-     }
-     
      function AdmSidePanel(){
         const [togle,setTogle]=useState('+');
         const [display,setDisplay]=useState('hidden')
@@ -113,9 +81,8 @@ function AdmBody(){
     
     
 
-     let urlParams=new URLSearchParams(window.location.search);
-     var sesId=urlParams.get('session');
-     axios.get("admin_session?id="+sesId)
+     
+     axios.get("/admin_session")
      .then(response=>{        
          var sesData=response.data;
          sesData.map((ses)=>{
@@ -297,9 +264,9 @@ function AdmBody(){
                      <AdmSidePanel/>
                 </div>
                 <div className="col-sm-9">
-                    hi <body>
+                    
                     <Outlet/>
-                    </body>
+                    
                 </div>
             </div>
             

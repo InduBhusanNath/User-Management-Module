@@ -36,13 +36,13 @@ app.get('/admin_logout',sessionController.adminLogOut);
 
 
 /*POST*/
-app.post('/user_post',userController.createUser);
-app.post('/user_edit_data',userController.editUsersData);
-app.post('/user_edit',userController.editUsers); 
-app.post('/user_delete_data',userController.deleteUserData);
-app.post('/user_delete',userController.deleteUser); 
-app.post('/user_priviledge_data',userController.priviledgeUserData);
-app.post('/user_priviledge_data_change',userController.changeUserPriviledge);
+app.post('/adminDashboard/adminUsers/user_post',userController.createUser);
+app.post('/adminDashboard/adminUsers/user_edit_data',userController.editUsersData);
+app.post('/adminDashboard/adminUsers/user_edit',userController.editUsers); 
+app.post('/adminDashboard/adminUsers/user_delete_data',userController.deleteUserData);
+app.post('/adminDashboard/adminUsers/user_delete',userController.deleteUser); 
+app.post('/adminDashboard/adminUsers/user_priviledge_data',userController.priviledgeUserData);
+app.post('/adminDashboard/adminUsers/user_priviledge_data_change',userController.changeUserPriviledge);
 app.post('/change_password',userController.changePassword);
 app.post('/change_password_by_user',userController.changePasswordByUser);
 app.post('/check_admin_user',adminUserController.checkAdminUser);

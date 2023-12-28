@@ -1,9 +1,8 @@
 import {Helmet} from "react-helmet";
 import {useState} from "react";
 import axios from "axios";
-
-
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLock } from '@fortawesome/free-solid-svg-icons';
 
 
 export default function AdminLogin(){
@@ -60,10 +59,10 @@ export default function AdminLogin(){
          .then(response=>{
              var admUserData=response.data;
              if(admUserData.flag=="1"){
-                 var sessionId=admUserData.sessionId;
+                 
                 setRes("Allowing Access.....");
                 setTimeout(()=>{
-                    window.location.assign("adminDashboard?session="+sessionId);
+                    window.location.assign("/adminDashboard");
                 },2000);
                 return;
                 
@@ -113,17 +112,21 @@ export default function AdminLogin(){
                      <div className="col-sm-4"></div>
                      <div className="col-sm-4">
                          <p>&nbsp;</p>
-                         <section className="background-lemonchiffon border border-warning rounded shadow-sm">
+                         <section className="bg-transparent border border-warning rounded shadow-sm">
                              <p>&nbsp;</p>
-                             <h1>ADMIN LOGIN</h1>
+                             
+                             <h1>ADMIN LOGIN</h1>  
+                             
+
                              <p>&nbsp;</p>
-                             <span className="text-danger small">{res}</span>
+                             <span className="text-danger small padding10">{res}</span>
                              <form onSubmit={HandleSubmit}>
                                  <div className="form-group">                        
                                      <label>EMail</label>
                                      <input type="email" className="form-control" name="n_adminEmail" value={adminEmail} onChange={(e)=>{setAdminEmail(e.target.value)}}/>
                                      <span className="text-danger small">{errorAdminEmail}</span>
                                  </div>
+                                 <br/>
                                  <div className="form-group">
                                      <label>Password</label>                               
                                      <input type={passwordType} className="form-control" name="n_adminPassword" value={adminPassword} onChange={(e)=>{setAdminPassword(e.target.value)}}/>
@@ -140,6 +143,10 @@ export default function AdminLogin(){
 
                                  
                              </form>
+                         </section>
+                         <section>
+                            <br/>
+                            <a href="forgotPassword" className="font font20 text-decoration-none">Forgot Password</a>
                          </section>
                         
                      </div>

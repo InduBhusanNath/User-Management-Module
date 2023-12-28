@@ -44,7 +44,7 @@ function AddAdminUser(){
     const [editAdminStatus,setEditAdminStatus]=useState('');
     const [errorAditAdminStatus,setErrorAditAdminStatus]=useState('');
     const [editDesignation,setEditDesignation]=useState('');
-    const [errorEditDesignation,setErrorEditDesignation]=useState('hi');
+    const [errorEditDesignation,setErrorEditDesignation]=useState('');
     const [editAddress,setEditAddress]=useState('');
     const [errorEditAddress, setErrorEditAddress]=useState('');
 
@@ -119,7 +119,7 @@ function AddAdminUser(){
               
               axios({
                      method:'post',
-                     url:'user_edit_data',
+                     url:'/adminDashboard/adminUsers/user_edit_data',
                      data:fd2,
                      headers:{'Content-Type':'application/json'}
               })
@@ -186,7 +186,7 @@ function AddAdminUser(){
 
               axios({
                     method:"post",
-                    url:"user_delete_data",
+                    url:"/adminDashboard/adminUsers/user_delete_data",
                     data:fd_dlt_usr_data,
                     headers:{"Content-Type":"application/json"}
               })
@@ -211,7 +211,7 @@ function AddAdminUser(){
               fd_usr_dlt.append("id",delId);
               axios({
                     method:"post",
-                    url:"user_delete",
+                    url:"/adminDashboard/adminUsers/user_delete",
                     data:fd_usr_dlt,
                     headers:{'Content-Type':'application/json'}
 
@@ -238,7 +238,7 @@ function AddAdminUser(){
               
               axios({
                       method:"post",
-                      url:"user_priviledge_data",
+                      url:"/adminDashboard/adminUsers/user_priviledge_data",
                       data:fd_usr_priv,
                       headers:{'Content-Type':'application/json'}
               })
@@ -268,7 +268,7 @@ function AddAdminUser(){
 
               axios({
                       method:"post",
-                      url:"user_priviledge_data_change",
+                      url:"/adminDashboard/adminUsers/user_priviledge_data_change",
                       data:adm_sts,
                       headers:{'Content-Type':'application/json'}
 
@@ -347,13 +347,13 @@ function AddAdminUser(){
                       
                       axios({
                             method: 'post',
-                            url:'/user_post',
+                            url:'/adminDashboard/adminUsers/user_post',
                             data: fd1,
-                            headers: { 'Content-Type': 'application/json' }
+                            headers: {'Content-Type': 'application/json' }
                             
                           })
                       .then(function (response) {                            
-                           
+                           alert(response.data);
                           })
                           .catch(function (error) {
                             alert(error);
@@ -402,7 +402,7 @@ function AddAdminUser(){
 
                axios({
                      method:"post",
-                     url:"user_edit",
+                     url:"/adminDashboard/adminUsers/user_edit",
                      data:fd_edt,
                      headers:{'Content-Type':'application/json'}
                })
@@ -619,6 +619,7 @@ function AddAdminUser(){
                              <table className="table">
                                     <thead>
                                            <tr>
+                                                  <th scope="col" className="text-center">Priviledge</th>
                                                   <th scope="col" className="text-center">Date</th>
                                                   <th scope="col" className="text-center">Name</th>
                                                   <th scope="col" className="text-center">Username</th>

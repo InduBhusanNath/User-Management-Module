@@ -19,18 +19,28 @@ function createUser(req,res){
         designation:req.body.n_designation,
         address:req.body.n_address    
       });   
+      var testUsername=req.body.n_username;
       
-      
-
-             
-      newUser.save()
-      .then((data)=>{
-            res.send("Data Uploaded Successfully.....");
-            console.log(data)
+      userModel.countDocuments({username:testUsername}).then(rows=>{
+            if(rows=="0"){
+                   newUser.save().then(data=>{
+                         res.send("New User Created Successfully.....");
+                  })
+                  .catch(error=>{
+                        res.send(error);
+                  });
+            }else if(rows=="1"){
+                   res.send("User Already Exists.....");
+            }else if(rows>"1"){
+                   res.send("Duplicate User Suspected.....");
+            }
       })
       .catch(error=>{
             res.send(error);
       });
+
+             
+      
 
       
 }

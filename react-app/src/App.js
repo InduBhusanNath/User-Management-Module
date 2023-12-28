@@ -9,6 +9,7 @@ import {
 import AdminLogin from "./backend/admin_login";
 import AdminDashboard from "./backend/admin_dashboard";
 import AdminUsers from "./backend/admin_users";
+import ForgotPassword from "./backend/forgot_password";
 
 const router=createBrowserRouter([
   {
@@ -21,15 +22,16 @@ const router=createBrowserRouter([
     children:[
       {
          path:"/adminDashboard/adminUsers/",
-         element:<AdminUsers/>,
+         element:<AdminUsers/>
       }
     ]
        
   },
    {
-     path:"adminUsers",
-     element:<AdminUsers/>
+     path:"/forgotPassword",
+     element:<ForgotPassword/>
    }
+   
 ]);
 
 function App() {

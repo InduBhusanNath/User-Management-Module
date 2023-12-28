@@ -6,7 +6,7 @@ const saltRounds = 10;
 
 
 function adminSession(req, res){
-     var sessionId=req.query.id;
+     var sessionId=req.session.user;
      userModel.find({username:sessionId}).then(data=>{
          res.json(data);
      });

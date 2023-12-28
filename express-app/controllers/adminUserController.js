@@ -8,49 +8,34 @@ const saltRounds = 10;
 function checkAdminUser(req,res,next){
      
       var userName=req.body.userName;
-      var userPassword=req.body.userPassword;
-      var adminUser;
-      req.session.user=userName;
+      var originalPassword=req.body.userPassword;   
       
-      
+      userModel.findOne({username:userName},'password').then(data=>{
+          let pwd=data.password;
+          bcrypt.compare(originalPassword,pwd,function(err,result){
+                  if(result){
+                         userModel.countDocuments({username:userName,password:pwd, adminStatus:'Admin'})
+                         .then(count=>{
+                                 if(count=="1"){
+                                     req.session.user=userName;
+                                         if(req.session.user){
+                                                 res.send({"flag":"1"});
+                                         }else{
+                                                 res.send("Cannot Login, Please Try Again.....");
+                                         }
 
-      userModel.where({username:userName},{password:userPassword}).countDocuments().then(count=>{
-           
-            if(count=="1"){
-                userModel.find().where({username:userName},{password:userPassword},{adminStatus:'Admin'}).then(data=>{
-                      
-                       
-                       
-                        if(req.session.user){
-                            res.send({"flag":"1", "sessionId":req.session.user});
-                        }else{
-                            res.send("Cannot Login, Please Try Again.....");
-                        }
-
-                        
-                        
-                        
-                       
-                        
-
-
-
-                       
-                       
-                       
-
-                });
-                
-            }else if(count=="0"){
-                res.send({"flag":"0"})
-            }else if(count>1){
-                res.send({"flag":"1+"});
-            }             
-          
-      });
-            
-     
-      
+                                     }else if(count=="0"){
+                                             res.send({"flag":"0"});
+                                         }else if(count>1){
+                                             res.send({"flag":"1+"});
+                                         }                             
+                             
+                         });
+                  }else{
+                         res.send({"flag":"0"});
+                  }
+          });
+      });   
 
 
 
