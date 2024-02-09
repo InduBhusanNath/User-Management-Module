@@ -10,6 +10,9 @@ import AdminLogin from "./backend/admin_login";
 import AdminDashboard from "./backend/admin_dashboard";
 import AdminUsers from "./backend/admin_users";
 import ForgotPassword from "./backend/forgot_password";
+import Blog from "./backend/blogs";
+import WriteBlog from "./backend/write_blog";
+import ShowBlog from "./backend/show_blog";
 
 const router=createBrowserRouter([
   {
@@ -23,11 +26,25 @@ const router=createBrowserRouter([
       {
          path:"/adminDashboard/adminUsers/",
          element:<AdminUsers/>
+      },
+      {
+        path:"/adminDashboard/blogs/",
+        element:<Blog/>
+
+      },
+      {
+         path:"/adminDashboard/blogs/write_blog/",
+         element:<WriteBlog/>
+
+      },      
+      {path:"/adminDashboard/blogs/show_blog/",
+         element:<ShowBlog/>
       }
+
     ]
        
   },
-   {
+    {
      path:"/forgotPassword",
      element:<ForgotPassword/>
    }

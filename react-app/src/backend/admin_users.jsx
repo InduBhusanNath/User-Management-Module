@@ -493,8 +493,8 @@ function AddAdminUser(){
                                      <textarea  className="form-control" name="n_address" value={address} onChange={(e)=>{setAddress(e.target.value)}}/>
                               </div>
                               <br/>
-                              <div class="form-group">
-                                     <button type="submit" class="submit">ADD USER</button>
+                              <div className="form-group">
+                                     <button type="submit" className="submit">ADD USER</button>
                               </div>
 
                          </form>                    

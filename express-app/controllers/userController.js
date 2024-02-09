@@ -45,7 +45,7 @@ function createUser(req,res){
       
 }
 function readUsers(req,res){    
-            const limit=7;
+            const limit=2;
             const page=req.query.page;
             
             userModel.countDocuments().then(function(rows){
@@ -53,12 +53,16 @@ function readUsers(req,res){
                    var offset=(page-1)*limit;
                    var totalPages=Math.ceil(totalRows/limit);
                    
-                   userModel.find().skip(offset).limit(limit).then(data=>{
+                   userModel.find({}).skip(offset).limit(limit).then(data=>{
                         res.json(data);
+                        console.log(data)
+                        
                    });                  
                   
                   
-            });      
+            });  
+            
+            
                     
      
 }

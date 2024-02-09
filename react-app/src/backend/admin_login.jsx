@@ -74,6 +74,11 @@ export default function AdminLogin(){
              }else if(admUserData.flag=="1+"){
                   setRes("Duplicate Username Suspected.....");
                   return;
+             }else if(admUserData.flag=="0+"){
+                 setRes("Type the Correct Password.....");
+                 return;
+             }else if(admUserData.flag=="err"){
+                 setRes("Errors Detected, Please Try Again.....");
              }
             
 
