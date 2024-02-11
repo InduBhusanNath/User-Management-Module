@@ -5,6 +5,9 @@ import { faUsers } from '@fortawesome/free-solid-svg-icons';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
 import {faHouse} from '@fortawesome/free-solid-svg-icons';
 import {faBlog} from '@fortawesome/free-solid-svg-icons';
+import {faEnvelopesBulk} from '@fortawesome/free-solid-svg-icons';
+
+
 import React from 'react';  
 import { Link } from "react-router-dom";
 import { Outlet} from "react-router-dom";
@@ -45,6 +48,9 @@ function TechnicalSeo(){
                     </tr>
                     <tr>
                          <td className="bg-transparent"><FontAwesomeIcon icon={faBlog}/>&nbsp;<Link to="/adminDashboard/blogs/" className="action">Blogs</Link></td> 
+                    </tr>
+                    <tr>
+                         <td className="bg-transparent"><FontAwesomeIcon icon={faEnvelopesBulk}/>&nbsp;<Link to="/adminDashboard/contactus-messages/" className="action">Contact Us Messages</Link></td> 
                     </tr>
                 </tbody>
                 <button className="collapse_button w-75" onClick={Settings}><FontAwesomeIcon icon={faGear}/>&nbsp;Settings</button><span className="text-end w-25">{togle}</span>

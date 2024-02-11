@@ -19,7 +19,7 @@ function createUser(req,res){
         designation:req.body.n_designation,
         address:req.body.n_address    
       });   
-      var testUsername=req.body.n_username;
+      
       
       userModel.countDocuments({username:testUsername}).then(rows=>{
             if(rows=="0"){

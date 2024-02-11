@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
+
+
 let params=new URLSearchParams(document.location.search);
 let id=params.get("id");
-
      
-
-export default function ShowBlog(){
-    
+//Show Blog, Edit, Delete
+export default function ShowBlog(){      
     const [eBlog_Id,setEblog_Id]=useState(id);
     const [eBlogDate,setEBlogDate]=useState('');    
     const [eBlogTitle,setEBlogTitle]=useState(''); 
@@ -17,23 +17,36 @@ export default function ShowBlog(){
     const [eBlogAuthor,setEBlogAuthor]=useState('');
     const [eBlogBody,setEBlogBody]=useState('');
     const [msg1,setMsg1]=useState('');
-    const [isBlogContentShown,setisBlogContentShown]=useState('hidden');
+    const [isBlogContentShown,setisBlogContentShown]=useState('shown');
+    const [isBlogEditShown,setIsBlogEditShown]=useState('hidden');
+    const [isPopupShown,setIsPopupShown]=useState('hidden')
     const [message,setMessage]=useState('');
-    
+    const [deleteMessage,setDeleteMessage]=useState('');
     const [editImageFile,setEditImageFile]=useState('');
+    const [viewBlog,setViewBlog]=useState('background-palegoldenrod');
+    const [updateBlog,setUpdateBlog]=useState('background-lightgoldenrodyellow');
+
+    
 
     
 
      useEffect(()=>{
              axios.get('/adminDashboard/blogs/show_blog/?blgId='+id)
              .then(response=>{
-                   
-                   
-                   setEBlogTitle(response.data.blogTitle);
-                   setEblogMetaDescription(response.data.blogMetaDescription);
-                   setEBlogHeading(response.data.blogHeading);
-                   setEBlogAuthor(response.data.blogAuthor);
-                   setEBlogBody(response.data.blogBody);
+                   if(response.data.flag==="1"){
+                         setMsg1("Blog Found.....");
+                   }else{
+                         setMsg1("Could Not Find Blog,Please Try Again.....");
+                         return;
+                   }  
+                   setEblog_Id(response.data.eBlog_Id);
+                   setEBlogDate(response.data.eBlogDate);                   
+                   setEBlogTitle(response.data.eBlogTitle);
+                   setEblogMetaDescription(response.data.eBlogMetaDescription);
+                   setEBlogImagePath(response.data.eBlogImagePath);
+                   setEBlogHeading(response.data.eBlogHeading);
+                   setEBlogAuthor(response.data.eBlogAuthor);
+                   setEBlogBody(response.data.eBlogBody);
             })
              .catch(error=>{
                    setMsg1("Something Went Wrong, Please Try Again.....");
@@ -41,27 +54,41 @@ export default function ShowBlog(){
        },[]);
 
 
+   
 
 
      function BlogContent(){
-          return(<>
+          
+          
+          return(<>   
                    
                          <div className="row">
-                               <div className="col-sm-2"></div>
+                               <div className="col-sm-1"></div>
                                <div className="col-sm-10">
-                                {eBlogHeading}
-                               <br/>
-                                {eBlogImagePath}
-                               <br/>
-                               <img src={eBlogImagePath}/>
-                               <br/>
-                                {eBlogDate}
-                                <br/>
-                                {eBlogAuthor}
-                                <br/>
-                                {eBlogBody}
+                                     <span className="small text-dark">Date Posted: &nbsp;{eBlogDate}</span>
+                                     <br/>
+                                     <p className="text-dark small">Title:&nbsp;{eBlogTitle}</p>
+                                     <p className="text-dark small">Meta Description:&nbsp;{eblogMetaDescription}</p>
+                                     <p className="font font18">Image Path:&nbsp;{eBlogImagePath}</p>
+                                     <br/>
+                                     <img src={eBlogImagePath} className="img-fluid"/>
+                                     <p className="font font18">Author:&nbsp;{eBlogAuthor}</p>
+                                     <br/>
+                                     <h1>{eBlogHeading}</h1>
+                                     
+                                     <br/> 
+                                     
+                                     <b>
+                                     {eBlogBody}
+                                     </b>
+                                     
+                                                            
+                                     
+                                       
+                                     
+                               
                                 </div>
-                               <div className="col-sm-2"></div>
+                               <div className="col-sm-1"></div>
                          </div>
                    
           
@@ -156,15 +183,17 @@ export default function ShowBlog(){
             
        })
        .then(response=>{
-            setMessage(response.data);
+             setDeleteMessage(response.data);
      })
       .catch(error=>{
-           setMessage(error);
+            setDeleteMessage(error);
 
      });
        
 
   }
+
+ 
 
   
   
@@ -174,7 +203,7 @@ export default function ShowBlog(){
       return(<>  
                                
              <div className="row">
-                   <div className="col-sm-2"></div>
+                   <div className="col-sm-1"></div>
                    <div className="col-sm-10">
                         <section>
                               <span className="small text-danger">{message}</span>
@@ -242,39 +271,77 @@ export default function ShowBlog(){
 
                               </form>
                          </section>
-                         <section>
-                               <form method="post" onSubmit={deleteBlogContent}>
-
-                                    <div className="form-group">
-                                           <button type="submit" className="submit">Yes,Delete Blog</button>
-                                     </div>
-
-                              </form>
-                         </section>
+                         
                    </div> 
-                   <div className="col-sm-2"></div> 
+                   <div className="col-sm-1"></div> 
              </div>
       </>);
   }
-     
+     function vBlog(){
+             setViewBlog('background-palegoldenrod');
+             setUpdateBlog('background-lightgoldenrodyellow');
+             setisBlogContentShown('shown');
+             setIsBlogEditShown('hidden');
+             
+     }
+ function uBlog(){
+       
+       setViewBlog('background-lightgoldenrodyellow');
+       setUpdateBlog('background-palegoldenrod');       
+       setisBlogContentShown('hidden');
+       setIsBlogEditShown('shown');
+
+ }
+ function blogDeleteAlert(){
+      setIsPopupShown('shown');      
+       
+ }
+ function hideDeletePopup(){
+       setIsPopupShown('hidden');
+ }
     
         
      return(<>
          <div className="container bg-light">
              <div className="row">
                    <div className="col-sm-4"><span className="small text-danger">{msg1}</span></div>
-                   <div className="col-sm-4"></div>
+                   <div className="col-sm-4">
+                        <a href="javascript:void(0);" className="rounded text-dark fw-bold text-decoration-none" onClick={vBlog}><span className={viewBlog}><span className="padding10">View Blog</span></span></a>
+                        &nbsp;
+                        <a href="javascript:void(0);" className="rounded text-dark fw-bold text-decoration-none" onClick={uBlog}><span className={updateBlog}><span className="padding10">Update Blog</span></span></a>
+                       
+                   </div>
                    <div className="col-sm-4"></div>
              </div>
              <section className={isBlogContentShown}>
+                   <p>&nbsp;</p>
+                   <a href="javascript:void(0);" className="text-decoration-none rounded bg-danger padding10" onClick={blogDeleteAlert}>Delete Blog</a>
+                   <p>&nbsp;</p>
                    <BlogContent/>
+                   
              </section>
-             <EditBlog/>
+             <section className={isBlogEditShown}>
+                   <EditBlog/>
+             </section>
              
              
              
                
          </div>
+
+         
+
+       <div className={isPopupShown}>
+             <section className="popup">
+                  <span className="border border-primary" onClick={hideDeletePopup} >&#10060;</span>
+                  <p>&nbsp;</p>
+                  <span className="small text-danger">{deleteMessage}</span> 
+                  <span className="font font24">Do You Want to Delete the Blog--{eBlogHeading}?</span>
+                  <p>&nbsp;</p>
+                  <a href="javascript:void(0);" className="rounded-pill text-decoration-none bg-warning text-dark padding10" onClick={deleteBlogContent}>Yes, Delete</a>         
+             </section>
+             
+       </div>
 
      </>);
 }

@@ -95,12 +95,12 @@ export default function WriteBlog(){
      
      return(<> 
      
-     <ReactQuill theme="snow" value={blogBody} onChange={(value)=>{setBlogBody(value)}} />;
+     
      
      <div className="container">
              <div className="row">
-                 <div className="col-sm-3"></div>
-                 <div className="col-sm-6">
+                 <div className="col-sm-1"></div>
+                 <div className="col-sm-10">
                  
                      
                      <h1>Write Blog</h1>
@@ -137,6 +137,7 @@ export default function WriteBlog(){
                          <br/>
                          <div className="form-group">
                              <label>Write Blog</label>
+                             <ReactQuill theme="snow" value={blogBody} onChange={(value)=>{setBlogBody(value)}}/>
                              <textarea className="form-control" value={blogBody} name="n_blogBody" onChange={(e)=>{setBlogBody(e.target.value)}}/>
                          </div>
                          <br/>
@@ -150,7 +151,7 @@ export default function WriteBlog(){
                         
                      </form>
                  </div>
-                 <div className="col-sm-3"></div>
+                 <div className="col-sm-1"></div>
              </div>
          </div>
      

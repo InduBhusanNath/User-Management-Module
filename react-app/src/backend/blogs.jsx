@@ -9,10 +9,10 @@ import axios from "axios";
 
 function Header(){
      return(<>
-        <div className="row">
-             <div className="col-sm-3"></div>
-             <div className="col-sm-3"><h1>Blogs</h1></div>
-             <div className="col-sm-3"></div>
+        <div className="row padding25">
+             <div className="col-sm-2"></div>
+             <div className="col-sm-8"><h1>Blog Management</h1></div>
+             <div className="col-sm-2"></div>
         </div>
     </>);
 }
@@ -69,7 +69,7 @@ function BlogList(){
                     var blogData=response.data;
                     setBlogList(blogData.data);
                     setLastPage(blogData.totalPages);
-                    
+                    setBlogCount(blogData.totalBlogs);                 
                               
                     
                     
@@ -90,17 +90,20 @@ function BlogList(){
 
      return(<>
          
-        <div className="row">
-            <Link to="/adminDashboard/blogs/write_blog/">Write Blog</Link>
-            
-            <span className="small text-danger">{message}</span>
+           <div className="row">
+                <div className="col-sm-2">
+                     <Link to="/adminDashboard/blogs/write_blog/">&#128393;</Link>
+                </div>
+                <div className="col-sm-8">
+                     <span className="small text-danger">{message}</span>
+                </div>
+                <div className="col-sm-2"></div>
+           </div>
 
-        </div>
-
-        <div className="row">
-             <div className="col-sm-3"></div>
-             <div className="col-sm-6">
-             <span className="font font12">Total Blogs:{blogCount}</span>
+           <div className="row">
+                
+                <div className="col-sm-12">
+                     <span className="small text-success">Total Blogs:{blogCount}</span>
                      <table className="table table-hover">
                          <thead>
                             <tr>
@@ -109,25 +112,18 @@ function BlogList(){
                                     <th scope="col" className="text-center">AUTHOR</th> 
                                     <th scope="col" className="text-center">VIEW</th>                                
                             </tr>
-                        </thead>
-                        
+                         </thead>                       
 
-                        <tbody> 
-                             {showBlogs}
-                             
-                                                
+                         <tbody> 
+                              {showBlogs}
+                         </tbody>
 
-                        </tbody>
-
-                     </table>   
-                     <a href={firstUrl}>First Page</a> &nbsp;&nbsp; <a href={prevUrl}>&laquo;Prev</a> &nbsp;&nbsp;<a href={nextUrl}>Next&raquo;</a> &nbsp;&nbsp;<a href={lastUrl}>Last Page</a> 
-            
-                    
-
-                    
-              
-             </div>
-             <div className="col-sm-3"></div>
+                     </table>
+                     <span>   
+                          <a href={firstUrl}>First Page</a> &nbsp;&nbsp; <a href={prevUrl}>&laquo;Prev</a> &nbsp;&nbsp;<a href={nextUrl}>Next&raquo;</a> &nbsp;&nbsp;<a href={lastUrl}>Last Page</a> 
+                     </span>
+               </div>
+             
 
         </div>
      </>);

@@ -4,7 +4,6 @@ mongoose.connect('mongodb://127.0.0.1:27017/mydb');
 const express = require('express');
 const multer=require('multer');
 const fs=require("fs");
-const mv=require("mv");
 const { unlinkSync } = require('node:fs');
 const path=require('node:path');
 
@@ -132,20 +131,20 @@ async function readBlog(req,res){
 function edit_displayBlog(req,res){
        eblgId=req.query.blgId;
        blogModel.findOne({_id:eblgId}).then(results=>{
-            var eBlogData={
+
+            res.json(
+                  {
+                   "flag":"1",
                    "eBlog_Id":results._id,
                    "eBlogDate":results.blogDate,
+                   "eBlogTitle":results.blogTitle,
+                   "eBlogMetaDescription":results.blogMetaDescription,
                    "eBlogImagePath":results.blogImagePath,
                    "eBlogHeading":results.blogHeading,
                    "eBlogAuthor":results.blogAuthor,
                    "eBlogBody":results.blogBody
-            }
-            var eBlgSendData={
-                  "flag":"1",
-                  "result":eBlogData
-            }
+                  });
             
-            res.send(results);
             
             
             

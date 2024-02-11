@@ -13,6 +13,8 @@ import ForgotPassword from "./backend/forgot_password";
 import Blog from "./backend/blogs";
 import WriteBlog from "./backend/write_blog";
 import ShowBlog from "./backend/show_blog";
+import ContactUs from "./frontend/contactus";
+import MessagesContactUs from "./backend/contactus_messages";
 
 const router=createBrowserRouter([
   {
@@ -37,13 +39,22 @@ const router=createBrowserRouter([
          element:<WriteBlog/>
 
       },      
-      {path:"/adminDashboard/blogs/show_blog/",
+      {  path:"/adminDashboard/blogs/show_blog/",
          element:<ShowBlog/>
+      },
+      {  
+         path:"/adminDashboard/contactus-messages/",
+         element:<MessagesContactUs/>
+
       }
 
     ]
        
   },
+   {
+      path:"/contactus",
+      element:<ContactUs/>
+   },
     {
      path:"/forgotPassword",
      element:<ForgotPassword/>
