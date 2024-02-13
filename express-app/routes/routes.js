@@ -37,6 +37,7 @@ const createUser = require('../controllers/userController.js');
 var sessionController=require('../controllers/sessionController.js');
 var blogController=require('../controllers/blogController.js');
 var contactUsMessageModel=require('../controllers/contactUsMessageController.js');
+var autoCreateAdminController=require('../controllers/autoCreateAdminController.js');
 
 /* GET*/
 app.get('/test', function(req, res) {
@@ -44,7 +45,7 @@ app.get('/test', function(req, res) {
   console.log("test");
    
 });
-
+app.get('/adminLogin/create-auto-admin',autoCreateAdminController.createautoAdmin);
 app.get('/adminDashboard/adminUsers',userController.readUsers);
 app.get('/admin_session',sessionController.adminSession);
 app.get('/admin_logout',sessionController.adminLogOut);

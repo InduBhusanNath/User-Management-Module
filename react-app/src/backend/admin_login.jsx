@@ -1,11 +1,17 @@
 import {Helmet} from "react-helmet";
 import {useState} from "react";
+import { useEffect } from "react";
+import { useRef} from "react";
+import parse from 'html-react-parser';
 import axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
 
 
-export default function AdminLogin(){
+ 
+
+
+export default function AdminLogin(t){
     const [adminEmail,setAdminEmail]=useState("");
     const [errorAdminEmail, setErrorAdminEmail]=useState("");
     const [adminPassword,setAdminPassword]=useState("");
@@ -13,8 +19,32 @@ export default function AdminLogin(){
     const [passwordType,setPasswordType]=useState("password");
     const [checked, setChecked]=useState(false);
     const [res,setRes]=useState('');
+    const [autousr,setAutousr]=useState('');
     const [sessionUserId, setSessionUserId]=useState('');
     const [sessionAdminStatus,setSessionAdminStatus]=useState('');
+    
+   
+    
+
+    function getAutoAdmin(){        
+             let xhr=new XMLHttpRequest();
+             xhr.open('GET',"/adminLogin/create-auto-admin",true);
+             xhr.send();
+             xhr.onload=()=>{ 
+                             var m=parse(xhr.response);
+                             setAutousr(m);
+                        }
+     }
+    
+ 
+     
+     
+     
+     
+    
+
+     
+     
 
      
     {/* Show/Hide Password*/}
@@ -93,7 +123,7 @@ export default function AdminLogin(){
 
      
      return(
-         <>
+         <> 
             <Helmet>
                 <html lang="en"/>
                 <title>Admin Login</title>
@@ -103,7 +133,10 @@ export default function AdminLogin(){
             <div className="container">
                  {/*Header*/}
                  <div className="row">
-                     <div className="col-sm-4"></div>
+                     <div className="col-sm-4">
+                        {/* Create Dummy User for First Login*/}
+                        <button className="button" onClick={getAutoAdmin}>Create Dummy Admin User</button>
+                     </div>
                      <div className="col-sm-4">
                          <p>&nbsp;</p>
                          <p>&nbsp;</p>
@@ -116,6 +149,9 @@ export default function AdminLogin(){
                  <div className="row">
                      <div className="col-sm-4"></div>
                      <div className="col-sm-4">
+                         <section>
+                             <span className="text-danger small padding10">{autousr}</span>
+                         </section>
                          <p>&nbsp;</p>
                          <section className="bg-transparent border border-warning rounded shadow-sm">
                              <p>&nbsp;</p>
